@@ -1,14 +1,117 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{interim}
-\author{adamurban98 }
+\usepackage{biblatex} %Imports biblatex package
+\addbibresource{sample.bib} %Import the bibliography file
+
+
+
+
+\title{ \textbf{Multi-Way Data and Constrained Tensor Decompositions} \\ BEng Final Year Project \\ Interim report}
+\author{Ádám Urbán\\adamurban98@gmail.com, au4417@ic.ac.uk, CID: 01355934}
 \date{May 2020}
+
 
 \begin{document}
 
 \maketitle
 
+\begin{abstract}
+The problems of multi-way array (tensor) factorisations and decompositions arise in a variety of disciplines in the sciences and engineering. They have a wide range of important applications such as in bioinformatics, neuroscience, image understanding, text mining, chemo- metrics, computer vision and graphics, where tensor factorisations and decompositions can be used to perform factor retrieval, dimensionality reduction, compression, denoising, to mention but a few. For example, in comprehensive Brain Computer Interface (BCI) studies, the brain data structures often contain higher-order ways (modes) such as trials, tasks conditions, subjects, and groups in addition to the intrinsic dimensions of space, time and frequency.
+
+Standard matrix factorisations, such as PCA, SVD, ICA and NMF and their variants, are invaluable tools for BCI feature selection, dimensionality reduction, noise reduction, and mining. However, they have only two modes or 2-way representations (e.g., channels and time) and therefore have severe intrinsic limitations. In order to obtain more natural representations of the original multi-dimensional data structure, it is necessary to use tensor decomposition approaches, since additional dimensions or modes can be retained only in multi-linear models to produce structures that are unique and which admit interpretations that are meaningful.
+
+The aim of this project is to analyse how choice of constrains (e.g. nonnegativity, sparsity, smoothness etc) imposed on components of tensor decompositions affects interpretability of obtained results and how tasks such as regression, classification, clustering and reconstruction can benefit from them when dealing with the real-world data. Additionally, a student would be presented with an opportunity to contribute to an open source library, HOTTBOX, which focuses on tensor decompositions, statistical analysis, visualisation, feature extraction, regression and non-linear classification of multi-dimensional data.
+\end{abstract}
+
 \section{Introduction}
+
+The above abstract was defined back in January. Since then, I have had multiple meeting with my supervising PhD student Ilya Kisil and I have developed a unique outlook on the task which I will briefly restate in section \ref{sec:restatement}. The main change since January is that we will narrow our focus from the broad goal of "constrained" decomposition to the more attainable goal of non-negative decomposition. Furthermore, the decomposition, on which this non-negativity constrain will be applied will be prioritised in the following order: CPD, Tucker, TTD followed by the rest. The reason for this narrowing of focus was also motivated by the requirements of the broader research conducted by my supervisors and the prior implementation of CPD, Tucker, TTD in HOTTBOX. 
+
+If progress will be good, we might consider additions to these goals in line with the originally ambitious spirit of the project description.
+
+Section \ref{sec:CPD} presents and example walk trough the ALS CPD algorithm with hints on how to impose the non negativity constrains. The detailed derivation for the other decompositions will be part of the final report.
+
+Section \ref{sec:milestones} list the milestones in a table and also provides a description for each one. It also assesses the progress of the first two milestones (milestones 1 and 2), which are already finished and are described in this report (literature review, comprehension of task and the HOTTBOX framework) and comments on the progreess of the currently ongoing milestone (milestone 3).
+
+Finally section \ref{sec:collaboration} describes the collaboration with my supervisor's PhD Student Ilya Kisil, as it was required in the specification for this interim report.
+
+\section{Critical assessment of the task and its importance for the field of engineering and science\label{sec:restatement}}
+
+\section{The CPD decomposition using the ALS method \label{sec:CPD}}
+
+\section{Milestones \label{sec:milestones}}
+
+Table \ref{tab:milestones} shows our milestones, their presumed deadlines and estimates in days how long they should take to complete. The following section details the specification for each milestone.
+
+\subsection{Milestone 1: Literature review and general understanding of the topic}
+
+The appended reference list shows a number of useful literature. In this section we will comment on the most usefull pieces.
+
+\subsection{Milestone 2: Familiarisation with the HOTTBOX environment}
+
+HOTTBOX is a framework written in the Python programming language, developed and maintaind by Ilya Kisil. The goal is to implement and test our theoretical findings within HOTTBOX.
+
+This milestone has been already completed. I have familiarised myself with the basic structures available in HOTTBOX, e.g. raw tensor, Kruskal form representation, Tucker representation etc; and the available decompositions and algorithms. I have also familiarised myself with the testing and documentation practices of the codebase and the general developer guidelines.
+
+It iss worth mentioning that a great advantage of HOTTBOX is the python programming language which makes it interoperable with most of the currently used popular python packages: numpy, scipy, scikit, pandas, etc.
+
+
+
+
+\subsection{Milestone 3: Implementing nonnegative CPD}
+Implementing a nonnegative version of the CPD. 
+
+The initial attempt will be to slightly modify the alternating least squares approach. Later this
+
+The work on this milestone has already begun.
+
+\subsection{Milestone 4: Implementing non negative Tucker decomposition}
+
+Implementing a nonnegative version of the Tucker decomposition. 
+
+\subsection{Milestone 5: Assessing performance on real world data}
+
+After the previous two milestones are implemented they will be tested on real world data from various domains (Finance, Biomed, Audio, Visual). 
+
+It has been suggested that a new "semi-constrained alternating least squares method" (SC-ALS), where the nonnegativity constrain is only applied to select modes, for which it makes physical sense. We expect this method to be of particular utility in the biomedical field, where sensor data (e.g. ECG) is often non constrained, however it makes to impose a non negativity constrain on the mode representing the "channel" of the sensor. 
+
+\subsection{Milestone 6:  [Optional/stretch] Animations and visualisations}
+
+It has been suggested that HOTTBOX lacks some easy and quick visualisation methods. If these were added to the codebase, they could also be helpful for the final presentation and report.
+
+\subsection{Milestone 7:  Finalising report and deliverables}
+
+This part mostly includes editing the text of the report and refactoring/documenting the committed code to HOTTBOX. This was included as a milestone specifically because I believe that the code submitted to HOTTBOX should be properly tested and cleaned before submission.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{r|X|l|l}
+        & Milestone & Deadline & Time estimate \\ \hline
+         1. & Literature review and general understanding of the topic & May 5 & 5 days \\
+          2. & Familiarisation with the HOTTBOX environment & May 10 & 5 days \\
+           3. & Implementing nonnegative CPD & May 20 & 10 days\\
+            4. & Implementing non negative Tucker decomposition & May 30 & 10 days\\
+             5. & Assessing performance on real world data & June 8 & 10 days \\
+            6. & [Optional/stretch] Animations and visualisations & June 13 & 5 days \\
+            7. & Finalising report and deliverables & \textbf{June 18} & 5 days \\
+            \multicolumn{3}{r|}{TOTAL:} & \textbf{50 days} \\
+    \end{tabular}
+    \caption{Milestones}
+    \label{tab:milestones}
+\end{table}
+
+\section{Collaboration and hep from other people \label{sec:collaboration}}
+
+I have conducted most of the research so far with my supervisor's PhD student Ilya Kisil. Ilya is the maintainer of the hottbox platform, to which I am about to contribute and his own research focuses on tensors.
+
+We have weekly videocalls (usually on Fridays). In addition to this we are in contact multiple times a  week using the slack collaboration platform, which is well suited for SW heavy projects.
+
+In the future, especially toward June, I am planning to contact my supoervisor, Prof Mandic directly more often as well and present him our findings.
+
+\cite{ctan}
+
+\printbibliography
+
 
 \end{document}
