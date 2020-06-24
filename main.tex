@@ -1,20 +1,31 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\usepackage{biblatex} %Imports biblatex package
-\addbibresource{sample.bib} %Import the bibliography file
 
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{sample.bib}
 
 
 
 \title{ \textbf{Multi-Way Data and Constrained Tensor Decompositions} \\ BEng Final Year Project \\ Interim report}
-\author{Ádám Urbán\\adamurban98@gmail.com, au4417@ic.ac.uk, CID: 01355934}
+\author{Ádám Urbán}
 \date{May 2020}
 
 
 \begin{document}
 
 \maketitle
+
+\begin{tabular}{rll}
+Student: &Ádám Urbán, &adamurban98@gmail.com\\
+Supervisor: &Prof Danilo Mandic, &d.mandic@imperial.ac.uk \\
+Co-supervisor: &Ilya Kisil, &i.kisil15@imperial.ac.uk
+\end{tabular}
 
 \begin{abstract}
 The problems of multi-way array (tensor) factorisations and decompositions arise in a variety of disciplines in the sciences and engineering. They have a wide range of important applications such as in bioinformatics, neuroscience, image understanding, text mining, chemo- metrics, computer vision and graphics, where tensor factorisations and decompositions can be used to perform factor retrieval, dimensionality reduction, compression, denoising, to mention but a few. For example, in comprehensive Brain Computer Interface (BCI) studies, the brain data structures often contain higher-order ways (modes) such as trials, tasks conditions, subjects, and groups in addition to the intrinsic dimensions of space, time and frequency.
@@ -30,15 +41,33 @@ The above abstract was defined back in January. Since then, I have had multiple 
 
 If progress will be good, we might consider additions to these goals in line with the originally ambitious spirit of the project description.
 
-Section \ref{sec:CPD} presents and example walk trough the ALS CPD algorithm with hints on how to impose the non negativity constrains. The detailed derivation for the other decompositions will be part of the final report.
+Section \ref{sec:restatement} also contains a literature review together with my commentary on the background reading materials.
 
 Section \ref{sec:milestones} list the milestones in a table and also provides a description for each one. It also assesses the progress of the first two milestones (milestones 1 and 2), which are already finished and are described in this report (literature review, comprehension of task and the HOTTBOX framework) and comments on the progreess of the currently ongoing milestone (milestone 3).
 
 Finally section \ref{sec:collaboration} describes the collaboration with my supervisor's PhD Student Ilya Kisil, as it was required in the specification for this interim report.
 
-\section{Critical assessment of the task and its importance for the field of engineering and science\label{sec:restatement}}
+\section{Critical assessment of the task and literature review\label{sec:restatement}}
 
-\section{The CPD decomposition using the ALS method \label{sec:CPD}}
+An entire section could be devoted to a review of field specific literature. The reason for this is that the very concept of tensor decomposition has been conceived in the field of psychometrics \cite{hitchcock1927expression} in 1927 and later rediscovered in the late 20th century. The earliest application was motivated by the supposition of the binary nature of human intellect. The hypothesis was thus that results of an intelligence test stored in a tensor could be decomposed into a polyadic sum of low rank tensors.
+
+A more contemporary example is \cite{almirantearena2017decomposition}, which utilises various tensor decompositions to investigate ECG-ADV signals.
+
+\cite{zhou2014nonnegative}, \cite{cichocki2015tensor}, \cite{kolda2009tensor} and \cite{yokota2015smooth} were explicitly mentioned during the process of specifying this projects assignment. All these were useful especially in the early stages for outlining the fundamentals of tensor algebra. 
+
+Special mention goes to \cite{kolda2009tensor}, which is one of the most widely read and cited in the field and subjectively I can confirm that has been the most useful for me. This paper contains a rudimentary introduction to tensor algebra (Section 2).
+
+Section 3 deals with the CANDECOMP/PARAFAC decomposition. It provides also some outlines of algorithm's whose modifications will be used later to get the constrained version of this algorithm family.
+
+Section 4 deals with compression and tucker decomposition. And finally section 5 deals with some other, less prominent decomposition types, most of which originated from the field of psychometrics.
+
+The following articles are mentioned here as a possibly useful future references.
+
+\cite{sidiropoulos2017tensor} is useful for pointing out the applications within machine learning.
+
+ \cite{ballard2018parallel} and \cite{friedlander2008computing} all deal with non-negativity constrains on tensor decomposition.
+
+% \cite{alexandrov2019nonnegative}, \cite{slawski2013non},
 
 \section{Milestones \label{sec:milestones}}
 
@@ -55,8 +84,6 @@ HOTTBOX is a framework written in the Python programming language, developed and
 This milestone has been already completed. I have familiarised myself with the basic structures available in HOTTBOX, e.g. raw tensor, Kruskal form representation, Tucker representation etc; and the available decompositions and algorithms. I have also familiarised myself with the testing and documentation practices of the codebase and the general developer guidelines.
 
 It iss worth mentioning that a great advantage of HOTTBOX is the python programming language which makes it interoperable with most of the currently used popular python packages: numpy, scipy, scikit, pandas, etc.
-
-
 
 
 \subsection{Milestone 3: Implementing nonnegative CPD}
@@ -84,7 +111,7 @@ It has been suggested that HOTTBOX lacks some easy and quick visualisation metho
 
 This part mostly includes editing the text of the report and refactoring/documenting the committed code to HOTTBOX. This was included as a milestone specifically because I believe that the code submitted to HOTTBOX should be properly tested and cleaned before submission.
 
-\begin{table}[]
+\begin{table}[ht]
     \centering
     \begin{tabular}{r|X|l|l}
         & Milestone & Deadline & Time estimate \\ \hline
@@ -109,7 +136,6 @@ We have weekly videocalls (usually on Fridays). In addition to this we are in co
 
 In the future, especially toward June, I am planning to contact my supoervisor, Prof Mandic directly more often as well and present him our findings.
 
-\cite{ctan}
 
 \printbibliography
 
